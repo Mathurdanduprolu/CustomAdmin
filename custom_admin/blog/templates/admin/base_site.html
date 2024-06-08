@@ -1,0 +1,41 @@
+<!-- blog/templates/admin/base_site.html -->
+
+{% extends "admin/base_site.html" %} {% load static %} {% block title %}{{
+COMPANY_NAME }} Admin{% endblock %} {% block extrahead %} {{ block.super }}
+<link
+  href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+  rel="stylesheet"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/custom_admin.css' %}"
+/>
+{% endblock %} {% block branding %}
+<div class="header py-4 px-6 flex items-center justify-between">
+  <h1 class="admin-title">{% trans 'Site administration' %}</h1>
+  <div class="company-name">ACME Company</div>
+</div>
+{% endblock %} {% block content %}
+<div class="container mx-auto px-4 py-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {% for app in app_list %}
+    <div class="p-6 bg-white rounded-lg shadow-md">
+      <h2 class="text-2xl font-semibold">{{ app.name|capfirst }}</h2>
+      <ul class="list-disc list-inside">
+        {% for model in app.models %}
+        <li>
+          <a
+            href="{{ model.admin_url }}"
+            class="text-blue-500 hover:text-blue-700"
+          >
+            {{ model.name|capfirst }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
