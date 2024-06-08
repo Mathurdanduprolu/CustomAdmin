@@ -3,7 +3,7 @@
 # Step 1: Clone the repository
 
 echo "Cloning the repository..."
-git clone https://github.com/yourusername/django-admin-customization.git
+git clone https://github.com/Mathurdanduprolu/CustomAdmin.git
 cd django-admin-customization || exit
 
 # Step 2: Install the required Python packages
